@@ -828,6 +828,13 @@ function startUpgradeAnimation(isSuccess) { const pointer = upgradePageElements.
 function showUpgradeResultModal(isSuccess, originalItem, newItem) { const modal = upgradePageElements.upgradeResultModal; modal.querySelector('#upgrade-result-title').textContent = isSuccess ? "Upgrade Successful!" : "Upgrade Failed"; modal.querySelector('#upgrade-result-title').style.color = isSuccess ? 'var(--success-color)' : 'var(--danger-color)'; modal.querySelector('#upgrade-result-message').textContent = isSuccess ? `Your ${originalItem.name} became ${newItem.name}!` : `You lost your ${originalItem.name}.`; modal.querySelector('#upgrade-result-image-container').innerHTML = `<img src="${(isSuccess ? newItem.imageFilename : originalItem.imageFilename) || generateImageFilename(isSuccess ? newItem.name : originalItem.name)}">`; modal.classList.add('active'); }
 function closeUpgradeResultModal() { upgradePageElements.upgradeResultModal.classList.remove('active'); selectedItemForUpgrade = null; desiredItemForUpgrade = null; updateSlotDisplay(upgradePageElements.selectedInventoryItemSlot, null, 'inventory'); updateSlotDisplay(upgradePageElements.desiredUpgradeItemSlot, null, 'desired'); calculateAndDisplayUpgradeStats(); }
 
+function updateLoadingStatus(message) {
+    const statusElement = document.getElementById('loading-status');
+    if (statusElement) {
+        statusElement.textContent = message;
+    }
+}
+    
 // --- App Initialization ---
 async function initializeApp() {
     updateLoadingStatus("Initializing application...");
