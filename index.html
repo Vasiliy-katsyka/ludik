@@ -527,10 +527,13 @@ function renderCases() {
         const card = document.createElement('div');
         card.className = 'case-card';
         card.onclick = () => openRouletteModal(caseItem);
-        const mainPrize = caseItem.prizes[0];
+
+        // CORRECTED LOGIC: Use the case's own imageFilename, not the prize's.
+        const caseImage = caseItem.imageFilename || ''; // Fallback to empty string if not defined
+
         card.innerHTML = `
             <div class="case-image-display">
-                <img src="${generateImageFilename(mainPrize.name)}" alt="${mainPrize.name}" loading="lazy">
+                <img src="${caseImage}" alt="${caseItem.name}" loading="lazy">
             </div>
             <div class="case-price">${parseFloat(caseItem.priceTON).toFixed(1)} TON</div>
         `;
