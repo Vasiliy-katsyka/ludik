@@ -595,6 +595,57 @@ def register_referral_api():
     finally:
         db.close()
 
+# --- NEW: Telegram Webhook Setup Function ---
+def setup_telegram_webhook(flask_app_instance):
+    if not bot:
+        logger.error("Telegram bot instance is not initialized (BOT_TOKEN missing?). Webhook cannot be set.")
+        return
+
+    # Path for the webhook - using the bot token makes it secret
+    WEBHOOK_PATH = f'/{BOT_TOKEN}'
+    
+    # Render provides RENDER_EXTERNAL_HOSTNAME. If not, fallback to your specific URL.
+    render_hostname = os.getenv('RENDER_EXTERNAL_HOSTNAME')
+    if render_hostname:
+        WEBHOOK_URL_BASE = f"https://{render_hostname}"
+    else:
+        # Fallback to your explicitly provided server URL
+        WEBHOOK_URL_BASE = "https://ludik.onrender.com" 
+        logger.warning(f"RENDER_EXTERNAL_HOSTNAME not found, using manually configured URL: {WEBHOOK_URL_BASE}")
+
+    FULL_WEBHOOK_URL = f"{WEBHOOK_URL_BASE}{WEBHOOK_PATH}"
+
+    # Define the webhook handler route within the Flask app context
+    @flask_app_instance.route(WEBHOOK_PATH, methods=['POST'])
+    def webhook_handler():
+        if flask_request.headers.get('content-type') == 'application/json':
+            json_string = flask_request.get_data().decode('utf-8')
+            update = telebot.types.Update.de_json(json_string)
+            logger.debug(f"Webhook received update: {update.update_id}")
+            bot.process_new_updates([update])
+            return '', 200
+        else:
+            logger.warning("Webhook received non-JSON request.")
+            flask_abort(403)
+
+    # Set the webhook with Telegram API when the application starts
+    try:
+        current_webhook_info = bot.get_webhook_info()
+        if current_webhook_info.url != FULL_WEBHOOK_URL:
+            logger.info(f"Current webhook is '{current_webhook_info.url}', attempting to set to: {FULL_WEBHOOK_URL}")
+            bot.remove_webhook()
+            time.sleep(0.5) # Give Telegram a moment
+            success = bot.set_webhook(url=FULL_WEBHOOK_URL)
+            if success:
+                logger.info(f"Telegram webhook set successfully to {FULL_WEBHOOK_URL}")
+            else:
+                logger.error(f"Failed to set Telegram webhook. Current info: {bot.get_webhook_info()}")
+        else:
+            logger.info(f"Telegram webhook already set correctly to: {FULL_WEBHOOK_URL}")
+    except Exception as e:
+        logger.error(f"Error during Telegram webhook setup: {e}", exc_info=True)
+
 if __name__ == '__main__':
+    setup_telegram_webhook(app)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
