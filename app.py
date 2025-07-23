@@ -279,39 +279,195 @@ def calculate_rtp_probabilities_proportional_fallback(case_data, all_floor_price
     return [{'name': p['name'], 'probability': float(p['probability']), 'floor_price': float(p['floor_price']), 'imageFilename': p['imageFilename'], 'is_ton_prize': p['is_ton_prize']} for p in prizes]
 
 # --- Game Data ---
+# --- Game Data (Cases updated with new items and increased chances) ---
 cases_data_backend_raw = [
-    {'id':'all_in_01','name':'All In','priceTON':0.1,'prizes': sorted([
-        {'name':'Plush Pepe','probability': 0.0000006}, {'name':'Durov\'s Cap','probability': 0.000006},
-        {'name':'Precious Peach','probability': 0.000025}, {'name':'Heart Locket','probability': 0.0000008},
-        {'name':'Heroic Helmet','probability': 0.00005}, {'name':'Bonded Ring','probability': 0.00006},
-        {'name':'Lol Pop','probability': 0.0015}, {'name':'Baggin\' Cat','probability': 0.01},
-        {'name':'Nothing','probability': 0.98, 'imageFilename': 'placeholder_nothing.png'}
+    # Probabilities slightly increased for valuable items
+    {'id':'all_in_01','name':'All In', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/All-In.jpg', 'priceTON':0.1,'prizes': sorted([
+        {'name':'Heart Locket','probability': 0.0000001},
+        {'name':'Plush Pepe','probability': 0.0000005}, 
+        {'name':'Durov\'s Cap','probability': 0.000005},
+        {'name':'Heroic Helmet','probability': 0.00001},
+        {'name':'Precious Peach','probability': 0.00002}, 
+        {'name':'Bonded Ring','probability': 0.00005},
+        {'name':'Lol Pop','probability': 0.001}, 
+        {'name':'Baggin\' Cat','probability': 0.01},
+        {'name':'Whip Cupcake','probability': 0.02},
+        {'name':'Nothing','probability': 0.9689144, 'imageFilename': 'placeholder_nothing.png'}
     ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
-    {'id':'small_billionaire_05','name':'Small Billionaire','priceTON':0.5,'prizes': sorted([
-        {'name':'Perfume Bottle','probability': 0.00015}, {'name':'Vintage Cigar','probability': 0.00018},
-        {'name':'Signet Ring','probability': 0.0002}, {'name':'Swiss Watch','probability': 0.00022},
-        {'name':'Nail Bracelet','probability': 0.0001}, {'name':'Low Rider','probability': 0.0005},
-        {'name':'Skebob','probability': 0.005}, {'name':'Snake Box', 'probability': 0.008},
-        {'name':'Nothing','probability': 0.98, 'imageFilename': 'placeholder_nothing.png'}
+    
+    {'id':'small_billionaire_05','name':'Small Billionaire', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Small-Billionaire.jpg', 'priceTON':0.5,'prizes': sorted([
+        {'name':'Westside Sign','probability': 0.00005},
+        {'name':'Perfume Bottle','probability': 0.00015}, 
+        {'name':'Nail Bracelet','probability': 0.00016},
+        {'name':'Vintage Cigar','probability': 0.00018},
+        {'name':'Signet Ring','probability': 0.0002}, 
+        {'name':'Swiss Watch','probability': 0.00022},
+        {'name':'Low Rider','probability': 0.0005},
+        {'name':'Skebob','probability': 0.005}, 
+        {'name':'Snake Box', 'probability': 0.008},
+        {'name':'Snoop Dogg', 'probability': 0.02},
+        {'name':'Swag Bag', 'probability': 0.02},
+        {'name':'Nothing','probability': 0.94554, 'imageFilename': 'placeholder_nothing.png'}
     ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
-    {'id':'dildo_case','name':'Dildo Case','priceTON':5.0,'prizes': sorted([
-        {'name':'Dildo','probability': 0.001}, {'name':'Nail Bracelet','probability': 0.0005},
-        {'name':'Whip Cupcake','probability': 0.1}, {'name':'Bow Tie','probability': 0.15},
-        {'name':'Lush Bouquet','probability': 0.2}, {'name':'Joyful Bundle','probability': 0.2},
-        {'name':'Valentine Box','probability': 0.15}, {'name':'Cupid Charm','probability': 0.1}
+
+    {'id':'lolpop','name':'Lol Pop Stash','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Lol-Pop.jpg','priceTON':2.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.0000001},
+        {'name':'Neko Helmet','probability':0.00001},
+        {'name':'Snake Box', 'probability': 0.0005},
+        {'name':'Pet Snake', 'probability': 0.0005},
+        {'name':'Skull Flower','probability':0.0005},
+        {'name':'Xmas Stocking', 'probability': 0.05},
+        {'name':'Spiced Wine','probability':0.05},
+        {'name':'Bow Tie','probability': 0.1},
+        {'name':'Lush Bouquet','probability': 0.1},
+        {'name':'Joyful Bundle','probability': 0.1},
+        {'name':'Baggin\' Cat','probability': 0.1},
+        {'name':'Party Sparkler','probability':0.1},
+        {'name':'Homemade Cake','probability':0.1},
+        {'name':'Jack-in-the-box','probability':0.1},
+        {'name':'Santa Hat','probability':0.0484899}
     ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
-    {'id': 'snoop_case', 'name': 'Snoop\'s Stash', 'priceTON': 8.0, 'prizes': sorted([
-        {'name': 'Snoop Dogg', 'probability': 0.1}, {'name': 'Swag Bag', 'probability': 0.1},
-        {'name': 'Snoop Cigar', 'probability': 0.08}, {'name': 'Low Rider', 'probability': 0.01},
-        {'name': 'Westside Sign', 'probability': 0.005}, {'name': 'Heroic Helmet', 'probability': 0.001},
-        {'name':'Baggin\' Cat','probability': 0.2}, {'name':'Skebob','probability': 0.1},
-        {'name': 'Record Player', 'probability': 0.2}
+
+    {'id':'recordplayer','name':'Record Player Vault','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Record-Player.jpg','priceTON':3.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.0000001},
+        {'name':'Tama Gadget','probability':0.001},
+        {'name':'Record Player','probability':0.001},
+        {'name':'Big Year', 'probability': 0.001},
+        {'name':'Jelly Bunny','probability':0.001},
+        {'name':'Crystal Ball','probability':0.001},
+        {'name':'Evil Eye','probability':0.001},
+        {'name':'Flying Broom','probability':0.001},
+        {'name':'Skull Flower','probability':0.001},
+        {'name':'Restless Jar','probability': 0.05},
+        {'name':'Snoop Cigar','probability': 0.05},
+        {'name':'Pet Snake', 'probability': 0.05},
+        {'name':'Eternal Candle','probability':0.05},
+        {'name':'Hex Pot','probability':0.1},
+        {'name':'Xmas Stocking', 'probability': 0.1},
+        {'name':'Snow Mittens','probability':0.091},
+        {'name':'Spy Agaric','probability':0.1},
+        {'name':'Star Notepad','probability':0.1},
+        {'name':'Ginger Cookie','probability':0.1},
+        {'name':'Party Sparkler','probability':0.15},
+        {'name':'Lol Pop','probability':0.15}
     ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
-    {'id':'plushpepe','name':'Plush Pepe Hoard','priceTON': 200.0,'prizes': sorted([
-        {'name':'Plush Pepe','probability':0.0000015}, {'name':'Durov\'s Cap','probability':0.000006},
-        {'name':'Heart Locket','probability':0.000001}, {'name':'Heroic Helmet','probability': 0.000008},
-        {'name':'Precious Peach','probability':0.45}, {'name':'Bonded Ring', 'probability': 0.35},
-        {'name':'Astral Shard','probability':0.1999835}
+
+    {'id': 'girls_collection', 'name': 'Girl\'s Collection', 'imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/girls.jpg', 'priceTON': 8.0, 'prizes': sorted([
+        {'name': 'Loot Bag', 'probability': 0.00001},
+        {'name': 'Genie Lamp', 'probability': 0.00001},
+        {'name': 'Sharp Tongue', 'probability': 0.00001},
+        {'name': 'Neko Helmet', 'probability': 0.00001},
+        {'name': 'Toy Bear', 'probability': 0.00001},
+        {'name': 'Eternal Rose', 'probability': 0.0001},
+        {'name': 'Valentine Box','probability': 0.1},
+        {'name': 'Cupid Charm','probability': 0.1},
+        {'name': 'Berry Box', 'probability': 0.2},
+        {'name': 'Sakura Flower', 'probability': 0.2},
+        {'name': 'Bunny Muffin', 'probability': 0.19985},
+        {'name': 'Star Notepad', 'probability': 0.2}
+    ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
+
+    {'id': 'mens_collection', 'name': 'Men\'s Collection', 'imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/men.jpg', 'priceTON': 8.0, 'prizes': sorted([
+        {'name': 'Durov\'s Cap', 'probability': 0.000001},
+        {'name': 'Mini Oscar', 'probability': 0.00001},
+        {'name': 'Perfume Bottle', 'probability': 0.00001},
+        {'name': 'Scared Cat', 'probability': 0.0001},
+        {'name': 'Vintage Cigar', 'probability': 0.0001},
+        {'name': 'Signet Ring', 'probability': 0.0001},
+        {'name': 'Swiss Watch', 'probability': 0.0001},
+        {'name': 'Dildo','probability': 0.001},
+        {'name': 'Top Hat', 'probability': 0.3},
+        {'name': 'Record Player', 'probability': 0.3},
+        {'name': 'Spiced Wine', 'probability': 0.399579}
+    ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
+
+    {'id':'swisswatch','name':'Swiss Watch Box','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Swiss-Watch.jpg','priceTON':10.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.0000001},
+        {'name':'Signet Ring','probability':0.00001},
+        {'name':'Swiss Watch','probability':0.00001},
+        {'name':'Neko Helmet','probability':0.00001},
+        {'name':'Eternal Rose','probability':0.00005},
+        {'name':'Electric Skull','probability':0.0001},
+        {'name':'Skobob','probability': 0.05},
+        {'name':'Voodoo Doll','probability':0.1},
+        {'name':'Diamond Ring','probability':0.1},
+        {'name':'Love Candle','probability':0.1},
+        {'name':'Mad Pumpkin','probability':0.1},
+        {'name':'Sleigh Bell','probability':0.05},
+        {'name':'Top Hat','probability':0.1},
+        {'name':'Trapped Heart','probability':0.0998199},
+        {'name':'Love Potion','probability':0.1},
+        {'name':'Big Year', 'probability': 0.1},
+        {'name':'Record Player','probability':0.1},
+        {'name':'Snake Box', 'probability': 0.05}
+    ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
+
+    {'id':'perfumebottle','name':'Perfume Chest','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Perfume-Bottle.jpg','priceTON': 20.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.0000001},
+        {'name':'Bonded Ring', 'probability': 0.0000005},
+        {'name':'Ion Gem','probability':0.000001},
+        {'name':'Perfume Bottle','probability':0.000005},
+        {'name':'Magic Potion','probability':0.00001},
+        {'name':'Loot Bag','probability':0.00001},
+        {'name':'Genie Lamp','probability':0.01},
+        {'name':'Swiss Watch','probability':0.01},
+        {'name':'Sharp Tongue','probability':0.02},
+        {'name':'Neko Helmet','probability':0.02},
+        {'name':'Kissed Frog','probability':0.05},
+        {'name':'Electric Skull','probability':0.1},
+        {'name':'Diamond Ring','probability':0.1},
+        {'name':'Big Year', 'probability': 0.1},
+        {'name':'Snake Box', 'probability': 0.4899734},
+        {'name':'Pet Snake', 'probability': 0.1}
+    ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
+
+    {'id':'vintagecigar','name':'Vintage Cigar Safe','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Vintage-Cigar.jpg','priceTON':40.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.0000001},
+        {'name':'Precious Peach','probability':0.000001},
+        {'name':'Bonded Ring', 'probability': 0.000005},
+        {'name':'Mini Oscar','probability':0.00001},
+        {'name':'Dildo','probability': 0.005},
+        {'name':'Perfume Bottle','probability':0.01},
+        {'name':'Scared Cat','probability':0.1},
+        {'name':'Vintage Cigar','probability':0.1},
+        {'name':'Swiss Watch','probability':0.05},
+        {'name':'Sharp Tongue','probability':0.1},
+        {'name':'Genie Lamp','probability':0.1},
+        {'name':'Toy Bear','probability':0.1349839},
+        {'name':'Neko Helmet','probability':0.1},
+        {'name':'Big Year', 'probability': 0.1},
+        {'name':'Snake Box', 'probability': 0.1},
+        {'name':'Pet Snake', 'probability': 0.1}
+    ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
+
+    {'id':'astralshard','name':'Astral Shard Relic','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Astral-Shard.jpg','priceTON':100.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.0000001},
+        {'name':'Durov\'s Cap','probability':0.0000005},
+        {'name':'Precious Peach','probability':0.000001},
+        {'name':'Heroic Helmet','probability': 0.000005},
+        {'name':'Bonded Ring', 'probability': 0.01},
+        {'name':'Astral Shard','probability':0.05},
+        {'name':'Ion Gem','probability':0.05},
+        {'name':'Mini Oscar','probability':0.05},
+        {'name':'Perfume Bottle','probability':0.05},
+        {'name':'Magic Potion','probability':0.05},
+        {'name':'Loot Bag','probability':0.0899934},
+        {'name':'Scared Cat','probability':0.1},
+        {'name':'Vintage Cigar','probability':0.1},
+        {'name':'Swiss Watch','probability':0.1},
+        {'name':'Toy Bear','probability':0.1},
+        {'name':'Neko Helmet','probability':0.1},
+        {'name':'Big Year', 'probability': 0.05},
+        {'name':'Pet Snake', 'probability': 0.05}
+    ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)},
+
+    {'id':'plushpepe','name':'Plush Pepe Hoard','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Plush-Pepe.jpg','priceTON': 200.0,'prizes': sorted([
+        {'name':'Plush Pepe','probability':0.000001},
+        {'name':'Durov\'s Cap','probability':0.000005},
+        {'name':'Heart Locket','probability': 0.000001},
+        {'name':'Precious Peach','probability':0.4},
+        {'name':'Bonded Ring', 'probability': 0.3},
+        {'name':'Astral Shard','probability':0.299993}
     ], key=lambda p: UPDATED_FLOOR_PRICES.get(p['name'], 0), reverse=True)}
 ]
 cases_data_backend = [
