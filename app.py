@@ -55,7 +55,7 @@ if not DATABASE_URL:
     logger.error("DATABASE_URL not set!")
     exit("DATABASE_URL is not set. Exiting.")
 
-WEBAPP_URL = "https://vasiliy-katsyka.github.io/case"
+WEBAPP_URL = "https://vasiliy-katsyka.github.io/ludik"
 API_BASE_URL = "https://ludik.onrender.com"
 BOT_USERNAME_FOR_LINK = "upgradeDemoBot"
 BIG_WIN_CHANNEL_ID = -1002786435659
