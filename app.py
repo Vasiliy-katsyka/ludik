@@ -308,6 +308,11 @@ initial_setup_and_logging()
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+if BOT_TOKEN:
+    setup_telegram_webhook(app) # Pass the app instance
+else:
+    logger.error("Cannot setup Telegram webhook because BOT_TOKEN is missing.")
+
 def get_db():
     db = SessionLocal();
     try: yield db
@@ -616,7 +621,7 @@ def setup_telegram_webhook(flask_app_instance):
     FULL_WEBHOOK_URL = f"{WEBHOOK_URL_BASE}{WEBHOOK_PATH}"
 
     # Define the webhook handler route within the Flask app context
-    @flask_app_instance.route(WEBHOOK_PATH, methods=['POST'])
+    @app.route(WEBHOOK_PATH, methods=['POST'])
     def webhook_handler():
         if flask_request.headers.get('content-type') == 'application/json':
             json_string = flask_request.get_data().decode('utf-8')
@@ -646,6 +651,5 @@ def setup_telegram_webhook(flask_app_instance):
         logger.error(f"Error during Telegram webhook setup: {e}", exc_info=True)
 
 if __name__ == '__main__':
-    setup_telegram_webhook(app)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)
