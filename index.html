@@ -440,12 +440,41 @@ function generateImageFilename(nameOrUrl) {
 }
 
 // --- Hardcoded Game Data (Cases) ---
+// --- Hardcoded Game Data (Cases) ---
 const casesData = [
-    {'id':'all_in_01','name':'All In','priceTON':0.1,'prizes': [{'name':'Plush Pepe'},{'name':'Durov\'s Cap'},{'name':'Precious Peach'},{'name':'Heart Locket'},{'name':'Heroic Helmet'},{'name':'Bonded Ring'},{'name':'Lol Pop'},{'name':'Baggin\' Cat','imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/BagginCat/refs/heads/main/IMG_20250718_234950_164.png'},{'name':'Nothing','imageFilename': 'placeholder_nothing.png'}]},
-    {'id':'small_billionaire_05','name':'Small Billionaire','priceTON':0.5,'prizes': [{'name':'Perfume Bottle'},{'name':'Vintage Cigar'},{'name':'Signet Ring'},{'name':'Swiss Watch'},{'name':'Nail Bracelet'},{'name':'Low Rider'},{'name':'Skebob','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/skebobs/refs/heads/main/BackgroundEraser_20250718_034626591.png'},{'name':'Snake Box'},{'name':'Nothing','imageFilename': 'placeholder_nothing.png'}]},
-    {'id':'dildo_case','name':'Dildo Case','priceTON':5.0,'prizes': [{'name':'Dildo','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/newTacos/main/BackgroundEraser_20250717_003931098.png'},{'name':'Nail Bracelet'},{'name':'Whip Cupcake'},{'name':'Bow Tie'},{'name':'Lush Bouquet'},{'name':'Joyful Bundle'},{'name':'Valentine Box'},{'name':'Cupid Charm'}]},
-    {'id': 'snoop_case', 'name': 'Snoop\'s Stash', 'priceTON': 8.0, 'prizes': [{'name': 'Snoop Dogg'},{'name': 'Swag Bag'},{'name': 'Snoop Cigar'},{'name': 'Low Rider'},{'name': 'Westside Sign'},{'name': 'Heroic Helmet'},{'name':'Baggin\' Cat','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/BagginCat/refs/heads/main/IMG_20250718_234950_164.png'},{'name':'Skebob','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/skebobs/refs/heads/main/BackgroundEraser_20250718_034626591.png'},{'name': 'Record Player'}]},
-    {'id':'plushpepe','name':'Plush Pepe Hoard','priceTON': 200.0,'prizes': [{'name':'Plush Pepe'},{'name':'Durov\'s Cap'},{'name':'Heart Locket'},{'name':'Heroic Helmet'},{'name':'Precious Peach'},{'name':'Bonded Ring'},{'name':'Astral Shard'}]}
+    {'id':'all_in_01','name':'All In', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/All-In.jpg', 'priceTON':0.1,'prizes': [
+        {'name':'Heart Locket'}, {'name':'Plush Pepe'}, {'name':'Durov\'s Cap'}, {'name':'Heroic Helmet'}, {'name':'Precious Peach'}, {'name':'Bonded Ring'}, {'name':'Lol Pop'}, {'name':'Baggin\' Cat', 'imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/BagginCat/refs/heads/main/IMG_20250718_234950_164.png'}, {'name':'Whip Cupcake'}, {'name':'Nothing'}
+    ]},
+    {'id':'small_billionaire_05','name':'Small Billionaire', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Small-Billionaire.jpg', 'priceTON':0.5,'prizes': [
+        {'name':'Westside Sign'}, {'name':'Perfume Bottle'}, {'name':'Nail Bracelet'}, {'name':'Vintage Cigar'}, {'name':'Signet Ring'}, {'name':'Swiss Watch'}, {'name':'Low Rider'}, {'name':'Skebob', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/skebobs/refs/heads/main/BackgroundEraser_20250718_034626591.png'}, {'name':'Snake Box'}, {'name':'Snoop Dogg'}, {'name':'Swag Bag'}, {'name':'Nothing'}
+    ]},
+    {'id':'lolpop','name':'Lol Pop Stash','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Lol-Pop.jpg','priceTON':2.0,'prizes': [
+        {'name':'Plush Pepe'}, {'name':'Neko Helmet'}, {'name':'Snake Box'}, {'name':'Pet Snake'}, {'name':'Skull Flower'}, {'name':'Xmas Stocking'}, {'name':'Spiced Wine'}, {'name':'Bow Tie'}, {'name':'Lush Bouquet'}, {'name':'Joyful Bundle'}, {'name':'Baggin\' Cat', 'imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/BagginCat/refs/heads/main/IMG_20250718_234950_164.png'}, {'name':'Party Sparkler'}, {'name':'Homemade Cake'}, {'name':'Jack-in-the-box'}, {'name':'Santa Hat'}
+    ]},
+    {'id':'recordplayer','name':'Record Player Vault','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Record-Player.jpg','priceTON':3.0,'prizes': [
+        {'name':'Plush Pepe'}, {'name':'Tama Gadget'}, {'name':'Record Player'}, {'name':'Big Year'}, {'name':'Jelly Bunny'}, {'name':'Crystal Ball'}, {'name':'Evil Eye'}, {'name':'Flying Broom'}, {'name':'Skull Flower'}, {'name':'Restless Jar'}, {'name':'Snoop Cigar'}, {'name':'Pet Snake'}, {'name':'Eternal Candle'}, {'name':'Hex Pot'}, {'name':'Xmas Stocking'}, {'name':'Snow Mittens'}, {'name':'Spy Agaric'}, {'name':'Star Notepad'}, {'name':'Ginger Cookie'}, {'name':'Party Sparkler'}, {'name':'Lol Pop'}
+    ]},
+    {'id': 'girls_collection', 'name': 'Girl\'s Collection', 'imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/girls.jpg', 'priceTON': 8.0, 'prizes': [
+        {'name': 'Loot Bag'}, {'name': 'Genie Lamp'}, {'name': 'Sharp Tongue'}, {'name': 'Neko Helmet'}, {'name': 'Toy Bear'}, {'name': 'Eternal Rose'}, {'name': 'Valentine Box'}, {'name': 'Cupid Charm'}, {'name': 'Berry Box'}, {'name': 'Sakura Flower'}, {'name': 'Bunny Muffin'}, {'name': 'Star Notepad'}
+    ]},
+    {'id': 'mens_collection', 'name': 'Men\'s Collection', 'imageFilename': 'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/men.jpg', 'priceTON': 8.0, 'prizes': [
+        {'name': 'Durov\'s Cap'}, {'name': 'Mini Oscar'}, {'name': 'Perfume Bottle'}, {'name': 'Scared Cat'}, {'name': 'Vintage Cigar'}, {'name': 'Signet Ring'}, {'name': 'Swiss Watch'}, {'name': 'Dildo', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/newTacos/main/BackgroundEraser_20250717_003931098.png'}, {'name': 'Top Hat'}, {'name': 'Record Player'}, {'name': 'Spiced Wine'}
+    ]},
+    {'id':'swisswatch','name':'Swiss Watch Box','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Swiss-Watch.jpg','priceTON':10.0,'prizes':[
+        {'name':'Plush Pepe'}, {'name':'Signet Ring'}, {'name':'Swiss Watch'}, {'name':'Neko Helmet'}, {'name':'Eternal Rose'}, {'name':'Electric Skull'}, {'name':'Skebob', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/skebobs/refs/heads/main/BackgroundEraser_20250718_034626591.png'}, {'name':'Voodoo Doll'}, {'name':'Diamond Ring'}, {'name':'Love Candle'}, {'name':'Mad Pumpkin'}, {'name':'Sleigh Bell'}, {'name':'Top Hat'}, {'name':'Trapped Heart'}, {'name':'Love Potion'}, {'name':'Big Year'}, {'name':'Record Player'}, {'name':'Snake Box'}
+    ]},
+    {'id':'perfumebottle','name':'Perfume Chest','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Perfume-Bottle.jpg','priceTON': 20.0,'prizes':[
+        {'name':'Plush Pepe'}, {'name':'Bonded Ring'}, {'name':'Ion Gem'}, {'name':'Perfume Bottle'}, {'name':'Magic Potion'}, {'name':'Loot Bag'}, {'name':'Genie Lamp'}, {'name':'Swiss Watch'}, {'name':'Sharp Tongue'}, {'name':'Neko Helmet'}, {'name':'Kissed Frog'}, {'name':'Electric Skull'}, {'name':'Diamond Ring'}, {'name':'Big Year'}, {'name':'Snake Box'}, {'name':'Pet Snake'}
+    ]},
+    {'id':'vintagecigar','name':'Vintage Cigar Safe','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Vintage-Cigar.jpg','priceTON':40.0,'prizes':[
+        {'name':'Plush Pepe'}, {'name':'Precious Peach'}, {'name':'Bonded Ring'}, {'name':'Mini Oscar'}, {'name': 'Dildo', 'imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/newTacos/main/BackgroundEraser_20250717_003931098.png'}, {'name':'Perfume Bottle'}, {'name':'Scared Cat'}, {'name':'Vintage Cigar'}, {'name':'Swiss Watch'}, {'name':'Sharp Tongue'}, {'name':'Genie Lamp'}, {'name':'Toy Bear'}, {'name':'Neko Helmet'}, {'name':'Big Year'}, {'name':'Snake Box'}, {'name':'Pet Snake'}
+    ]},
+    {'id':'astralshard','name':'Astral Shard Relic','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Astral-Shard.jpg','priceTON':100.0,'prizes':[
+        {'name':'Plush Pepe'}, {'name':'Durov\'s Cap'}, {'name':'Precious Peach'}, {'name':'Heroic Helmet'}, {'name':'Bonded Ring'}, {'name':'Astral Shard'}, {'name':'Ion Gem'}, {'name':'Mini Oscar'}, {'name':'Perfume Bottle'}, {'name':'Magic Potion'}, {'name':'Loot Bag'}, {'name':'Scared Cat'}, {'name':'Vintage Cigar'}, {'name':'Swiss Watch'}, {'name':'Toy Bear'}, {'name':'Neko Helmet'}, {'name':'Big Year'}, {'name':'Pet Snake'}
+    ]},
+    {'id':'plushpepe','name':'Plush Pepe Hoard','imageFilename':'https://raw.githubusercontent.com/Vasiliy-katsyka/case/main/caseImages/Plush-Pepe.jpg','priceTON': 200.0,'prizes':[
+        {'name':'Plush Pepe'}, {'name':'Durov\'s Cap'}, {'name':'Heart Locket'}, {'name':'Precious Peach'}, {'name':'Bonded Ring'}, {'name':'Astral Shard'}
+    ]}
 ];
 // Note: Floor prices will be fetched from the backend or a master list in JS. This just defines case contents.
 
